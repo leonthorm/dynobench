@@ -60,8 +60,8 @@ Model_quad3d::Model_quad3d(const Quad3d_params &params,
 
   translation_invariance = 3;
   invariance_reuse_col_shape = false;
-  nx_col = 7;
-  nx_pr = 7;
+  nx_col = 13;
+  nx_pr = 13;
   is_2d = false;
 
   ref_dt = params.dt;

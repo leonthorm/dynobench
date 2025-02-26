@@ -51,6 +51,12 @@ struct Joint_robot : Model_robot {
                          Eigen::Ref<Eigen::MatrixXd> Jv_u,
                          const Eigen::Ref<const Eigen::VectorXd> &x,
                          const Eigen::Ref<const Eigen::VectorXd> &u) override;
+    virtual void step(Eigen::Ref<Eigen::VectorXd> xnext,
+               const Eigen::Ref<const Eigen::VectorXd> &x,
+               const Eigen::Ref<const Eigen::VectorXd> &u,
+               double dt);
+
+  virtual void ensure(Eigen::Ref<Eigen::VectorXd> xout) override;
 
   virtual double distance(const Eigen::Ref<const Eigen::VectorXd> &x,
                           const Eigen::Ref<const Eigen::VectorXd> &y) override;
