@@ -226,6 +226,62 @@ void Joint_robot::calcDiffV(Eigen::Ref<Eigen::MatrixXd> Jv_x,
   }
 }
 
+  void Joint_robot::step(Eigen::Ref<Eigen::VectorXd> xnext,
+
+
+
+                             const Eigen::Ref<const Eigen::VectorXd> &x,
+
+
+                             const Eigen::Ref<const Eigen::VectorXd> &u,
+
+
+                             double dt) {
+
+
+  int k_x = 0;
+
+
+  int k_u = 0;
+
+
+  for (auto &robot :  v_jointRobot) {
+
+
+    size_t size_nx = robot->nx;
+
+
+    size_t size_nu = robot->nu;
+
+
+    robot->step(xnext.segment(k_x, size_nx), x.segment(k_x, size_nx), u.segment(k_u, size_nu), dt);
+
+
+    k_x += size_nx;
+
+
+    k_u += size_nu;
+
+
+  }
+
+
+}
+
+
+  void Joint_robot::ensure(Eigen::Ref<Eigen::VectorXd> xout) {
+
+
+  int k_x = 0;
+
+
+  for (auto &robot :  v_jointRobot) {
+    size_t size_nx = robot->nx;
+    robot->ensure(xout.segment(k_x, size_nx));
+    k_x += size_nx;
+  }
+}
+
 double Joint_robot::distance(const Eigen::Ref<const Eigen::VectorXd> &x,
                              const Eigen::Ref<const Eigen::VectorXd> &y) {
   double sum = 0;

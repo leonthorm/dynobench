@@ -129,12 +129,12 @@ struct Model_quad3d : Model_robot {
                const Eigen::VectorXd &p_lb = Eigen::VectorXd(),
                const Eigen::VectorXd &p_ub = Eigen::VectorXd());
 
-  virtual int number_of_r_dofs() override { NOT_IMPLEMENTED; }
-  virtual int number_of_so2() override { NOT_IMPLEMENTED; }
+  virtual int number_of_r_dofs() override { return 13; }
+  virtual int number_of_so2() override { return 0; }
   virtual void indices_of_so2(int &k, std::vector<size_t> &vect) override {
-    NOT_IMPLEMENTED;
+    k+=13;
   }
-  virtual int number_of_robot() override { NOT_IMPLEMENTED; }
+  virtual int number_of_robot() override { return 1; }
 
   virtual void ensure(Eigen::Ref<Eigen::VectorXd> xinout) override {
     xinout.segment<4>(3).normalize();
