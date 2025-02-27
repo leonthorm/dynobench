@@ -284,6 +284,7 @@ void Joint_robot::calcDiffV(Eigen::Ref<Eigen::MatrixXd> Jv_x,
 
 double Joint_robot::distance(const Eigen::Ref<const Eigen::VectorXd> &x,
                              const Eigen::Ref<const Eigen::VectorXd> &y) {
+
   double sum = 0;
   size_t size_nx;
   int k_x = 0;
